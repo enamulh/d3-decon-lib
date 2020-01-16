@@ -432,7 +432,7 @@ var deconstruct = function(svgNode,text) {
         "height": +$(svgNode).attr("height"),
         "background": + getBackground($(svgNode))
     };
-    console.log('labels:', labels);
+    //console.log('labels:', labels);
 
     var decon = new Deconstruction(labels, svgSize, grouped, marks, axes);
     decon = relateMappingRanges(decon);
@@ -732,7 +732,7 @@ var groupMarks = function(marks, callback) {
 
             // If there isn't a schema, we won't group it!
             if (_.isEqual(currSchema, [])) {
-                console.log('dont group', mark);
+                //console.log('dont group', mark);
                 return;
             }
 
