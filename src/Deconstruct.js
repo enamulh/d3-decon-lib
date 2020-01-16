@@ -2289,5 +2289,5 @@ module.exports = {
     extractData: extractMarkData,
     extractVisAttrs: extractVisAttrs,
     extractStyle: extractStyle,
-    isDerived: isved
+    isDerived: isDerived
 };
