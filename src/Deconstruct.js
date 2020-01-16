@@ -2034,7 +2034,6 @@ var extractMarkDataFromNode = function(node, deconID) {
           if(mark.data){
             if (mark.data.startAngle!==undefined && mark.data.endAngle!==undefined) {
               mark.attrs.angle = Math.abs(mark.data.startAngle - mark.data.endAngle);
-              console.
               delete mark.data.startAngle;
               delete mark.data.endAngle;
             }
