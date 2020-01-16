@@ -16,7 +16,7 @@ var stackBlur = require('../lib/StackBlur.js');
 var canvgVar = require('../lib/canvg.js');
 
 var savesvg = require('../lib/saveSvgAsPng.js');
-var verbose = true;
+var verbose = false;
 
 /* Polyfill for node.getTransformToElement */
 SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformToElement || function(elem) {
@@ -45,7 +45,7 @@ var pageDeconstruct = function() {
     for(var i=0;i<iframe.length;i++){
 
         try{
-            console.log('iframe source: '+iframe[i].src);
+            //console.log('iframe source: '+iframe[i].src);
 
             var a = [];
             //saveDataToLocalStorage(iframe[i].src);
@@ -60,7 +60,7 @@ var pageDeconstruct = function() {
                     original_url: window.location.href
                 }
             }).done(function(o) {
-                console.log('iframe url saved');
+                //console.log('iframe url saved');
             });
         }
         catch (e){console.log('error\n'+e);}
@@ -76,7 +76,7 @@ var pageDeconstruct = function() {
             a.push(data);
             // Alert the array value
             // Re-serialize the array back into a string and store it in localStorage
-            console.log(JSON.stringify(a));
+            //console.log(JSON.stringify(a));
             localStorage.setItem('iframe', JSON.stringify(a));
 
         }
