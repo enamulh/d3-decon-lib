@@ -33,8 +33,7 @@ if (typeof document !== 'undefined')
 else
     d3 = require('d3');
 
-var pageDeconstruct = function() {
-
+var pageDeconstruct = function(sendDataToServer) {
     var svgNodes = $('svg');
     // console.log('svgnodes'+svgNodes.length);
     // console.log(svgNodes);
@@ -44,27 +43,36 @@ var pageDeconstruct = function() {
     //console.log(iframe[0].src);
     for(var i=0;i<iframe.length;i++){
 
-        try{
-            //console.log('iframe source: '+iframe[i].src);
+        if(sendDataToServer) {
 
-            var a = [];
-            //saveDataToLocalStorage(iframe[i].src);
-            //window.open(iframe[i].src.replace("https:","https:"));
+            try {
+                //console.log('iframe source: '+iframe[i].src);
 
-            $.ajax({
-                type: "POST",
-                //url: "https://dry-island-89443.herokuapp.com/addURL/",
-                url: "https://localhost:3000/addURL/",
-                data: {
-                    iframe_url: iframe[i].src,
-                    original_url: window.location.href
-                }
-            }).done(function(o) {
-                //console.log('iframe url saved');
-            });
+                var a = [];
+                //saveDataToLocalStorage(iframe[i].src);
+                //window.open(iframe[i].src.replace("https:","https:"));
+
+                $.ajax({
+                    type: "POST",
+                    //url: "https://dry-island-89443.herokuapp.com/addURL/",
+                    url: "https://localhost:3000/addURL/",
+                    data: {
+                        iframe_url: iframe[i].src,
+                        original_url: window.location.href
+                    }
+                }).done(function (o) {
+                    //console.log('iframe url saved');
+                });
+            }
+            catch (e) {
+                console.log('error\n' + e);
+            }
         }
-        catch (e){console.log('error\n'+e);}
+        else{
+            console.log('Iframe:', iframe[i].src);
+            //window.location.replace(iframe[i].src);
 
+        }
         function saveDataToLocalStorage(data)
         {
             var a = [];
@@ -122,8 +130,9 @@ var pageDeconstruct = function() {
         });
 
         if (isD3Node) {
-            var canvas = getSVGAsImage(svgNode,i);
-
+            if(sendDataToServer){
+                var canvas = getSVGAsImage(svgNode,i);
+            }
             var decon = deconstruct(svgNode,"pageDeconstruct");
             if(verbose){
                 console.log('decon:');
@@ -323,7 +332,7 @@ function svgString2Image( svgNode, svgString, width, height, format, callback ) 
     image.src = imgsrc;
 }
 
-var deconstruct = function(svgNode,text) {
+var deconstruct = function(svgNode, sendDataToServer, text) {
     var marks = extractMarkData(svgNode);
     var labels = [];
     if(verbose){
@@ -411,22 +420,7 @@ var deconstruct = function(svgNode,text) {
         console.log(grouped);
         console.log(grouped.mappings);
     }
-    //console.log('background color:', $(svgNode).css("background-color"));
-    /*    var background= getBackground($(svgNode));
-        if(background) {
-          $.ajax({
-            type: "POST",
-            //url: "https://dry-island-89443.herokuapp.com/addURL/",
-            url: "https://localhost:3000/addbackground/",
-            data: {
-              url: window.location.href,
-              background: background
-            }
-          }).done(function (o) {
-            console.log('background saved');
 
-          });
-        }*/
     var svgSize = {
         "width": +$(svgNode).attr("width"),
         "height": +$(svgNode).attr("height"),
