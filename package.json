@@ -1,0 +1,86 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "d3-decon-lib@git://github.com/harperj/d3-decon-lib.git",
+        "scope": null,
+        "escapedName": "d3-decon-lib",
+        "name": "d3-decon-lib",
+        "rawSpec": "git://github.com/harperj/d3-decon-lib.git",
+        "spec": "git://github.com/harperj/d3-decon-lib.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:harperj/d3-decon-lib.git",
+          "sshUrl": "git+ssh://git@github.com/harperj/d3-decon-lib.git",
+          "httpsUrl": "git+https://github.com/harperj/d3-decon-lib.git",
+          "gitUrl": "git://github.com/harperj/d3-decon-lib.git",
+          "shortcut": "github:harperj/d3-decon-lib",
+          "directUrl": "https://raw.githubusercontent.com/harperj/d3-decon-lib/master/package.json"
+        }
+      },
+      "C:\\Users\\enamu\\OneDrive\\Documents\\GitHub\\d3-deconstructor"
+    ]
+  ],
+  "_from": "git://github.com/harperj/d3-decon-lib.git",
+  "_id": "d3-decon-lib@0.0.6",
+  "_inCache": true,
+  "_location": "/d3-decon-lib",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "d3-decon-lib@git://github.com/harperj/d3-decon-lib.git",
+    "scope": null,
+    "escapedName": "d3-decon-lib",
+    "name": "d3-decon-lib",
+    "rawSpec": "git://github.com/harperj/d3-decon-lib.git",
+    "spec": "git://github.com/harperj/d3-decon-lib.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:harperj/d3-decon-lib.git",
+      "sshUrl": "git+ssh://git@github.com/harperj/d3-decon-lib.git",
+      "httpsUrl": "git+https://github.com/harperj/d3-decon-lib.git",
+      "gitUrl": "git://github.com/harperj/d3-decon-lib.git",
+      "shortcut": "github:harperj/d3-decon-lib",
+      "directUrl": "https://raw.githubusercontent.com/harperj/d3-decon-lib/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git://github.com/harperj/d3-decon-lib.git#c1532d018828c01e76250ca824fd40e4e27af19f",
+  "_shasum": "2d53bf1fa51fa1231136bcc978337b4d1f1b4fcc",
+  "_shrinkwrap": null,
+  "_spec": "d3-decon-lib@git://github.com/harperj/d3-decon-lib.git",
+  "_where": "C:\\Users\\enamu\\OneDrive\\Documents\\GitHub\\d3-deconstructor",
+  "author": {
+    "name": "Jonathan Harper"
+  },
+  "bugs": {
+    "url": "https://github.com/harperj/d3-decon-lib/issues"
+  },
+  "dependencies": {
+    "circular-json": "^0.1.6",
+    "jquery": "^2.1.1",
+    "lodash": "^3.10.1",
+    "mathjs": "1.3.0"
+  },
+  "description": "Library for deconstructing D3 visualizations",
+  "devDependencies": {},
+  "gitHead": "c1532d018828c01e76250ca824fd40e4e27af19f",
+  "homepage": "https://github.com/harperj/d3-decon-lib",
+  "license": "ISC",
+  "main": "src/decon-lib.js",
+  "name": "d3-decon-lib",
+  "optionalDependencies": {},
+  "readme": "deconstructor\r\n=============\r\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harperj/d3-decon-lib.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.6"
+}
