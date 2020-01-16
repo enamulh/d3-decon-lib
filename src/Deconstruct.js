@@ -774,7 +774,7 @@ var groupMarks = function(marks, callback) {
             }
 
             if (!foundSchema) {
-                console.log('schema not found');
+                //console.log('schema not found');
                 var newSchema = {
                     schema: currSchema,
                     nodeType: mark.attrs['shape'],
@@ -828,8 +828,10 @@ var groupMarks = function(marks, callback) {
 
                 });
                 if(newSchema.nodeType === 'linePoint'){
-                    console.log('newSchema', mark);
-                    console.log(newSchema);
+                    if(verbose) {
+                        console.log('newSchema', mark);
+                        console.log(newSchema);
+                    }
                 }
 
 
@@ -860,36 +862,18 @@ var expandLines = function(marks) {
     for (var i = 0; i < marks.length - removed; ++i) {
         var mark = marks[i - removed];
         var lineData = getLineData(mark);
-        /*        if(verbose){
-                  if(mark.attrs['shape'] === 'path' && !mark.axis){
-                    console.log('lineData');
-                    console.log(mark);
-                    console.log(lineData);
-
-                  }
-                }*/
 
         if (lineData !== undefined) {
             marks.splice(i - removed, 1);
             removed++;
             var newMarks = getLinePoints(mark, lineData);
             Array.prototype.push.apply(marks, newMarks);
-            console.log('new marks');
-            console.log(newMarks);
-            /*          if(verbose){
-                        if(mark.attrs['shape'] === 'path'  && !mark.axis){
-                          console.log('new marks');
-                          console.log(newMarks);
-
-                        }
-                      }*/
         }
     }
     return marks;
 };
 
 var arrayLikeObject = function(obj) {
-    console.log('array like obj', obj);
 
     var length = 0;
     for (var attr in obj) {
@@ -915,7 +899,9 @@ var arrayLikeObject2 = function(obj) {
     var length = 0;
     for (var attr in obj) {
         if (attr !== "length" && isNaN(+attr)) {
-            console.log('undefined', attr);
+            if(verbose) {
+                console.log('undefined', attr);
+            }
             //return undefined;
         }
         else{
@@ -942,8 +928,6 @@ var arrayLikeObject2 = function(obj) {
 };
 var getLinePoints = function(mark, lineData) {
     var linePointPositions = getLinePointPositions(mark);
-    console.log('LinePointPositions');
-    console.log(linePointPositions);
     var linePoints = [];
 
     // If we have a basis line we should delete the irrelevant points
@@ -1050,7 +1034,6 @@ var getLineData = function(mark) {
     };
     //console.log('get line data', mark);
     if (mark.attrs['shape'] === 'path') {
-        console.log(mark.data);
         var dataArray;
         var otherData = {};
         var coercedArray = arrayLikeObject(mark.data);
@@ -1250,12 +1233,7 @@ function filterExtraMappings (schemaMappings) {
 
 
 function extractMultiLinearMappings(schema) {
-    if(verbose && schema.nodeType==='linePoint'){
-        console.log('extracting linear mapping for linePoint', schema);
-        /*      for(var i=0;i<schema.attrs['xPosition'].length;i++){
-                console.log(schema.attrs['xPosition'][i]);
-              }*/
-    }
+
     var numberFields = [];
     var numberAttrs = [];
     for (var field in schema.data) {
@@ -1272,10 +1250,6 @@ function extractMultiLinearMappings(schema) {
         }
     }
 
-    if(verbose){
-        console.log(numberAttrs);
-        console.log(numberFields);
-    }
 
 
     var allLinearMappings = [];
@@ -1301,9 +1275,7 @@ function extractMultiLinearMappings(schema) {
 
 
                 if(attr==='fill') {
-                    /*                  if(verbose){
-                                        console.log('checking linear mapping for fill');
-                                      }*/
+
                     var colorSpaces = ['rgb', 'hsl', 'lab'];
                     for(var cs = 0;cs<colorSpaces.length;cs++ ){
                         var colorVectorArray = new Array(3);
@@ -1369,13 +1341,8 @@ function extractMultiLinearMappings(schema) {
                 // }
 
 
-                if (err > 0.999) { //Enamul Changed from .9999 to .999 to accept colors
-                    if(attr==='fill'){
-                        console.log('found a linear mapping for color', fieldSet.reverse());
-                    }
-                    if(attr==='angle'){
-                        console.log('mapping for angle:', fieldSet.reverse());
-                    }
+                if (err > 0.999) {
+
 
                     var attrMin = _.min(schema.attrs[attr]);
                     var attrMax = _.max(schema.attrs[attr]);
@@ -1799,7 +1766,6 @@ function schematize (data, ids, nodeInfo) {
 }
 
 var getAxis = function(axisGroupNode) {
-    console.log('get axis');
 
     var axisTickLines = $(axisGroupNode).find('line');
     var axisTickLabels = $(axisGroupNode).find('text');
@@ -1830,7 +1796,6 @@ var getAxis = function(axisGroupNode) {
 };
 
 var getAxisD4 = function(axisGroupNode) {
-    console.log('get axis');
 
     var axisTickLines = $(axisGroupNode).find('line');
     var axisTickLabels = $(axisGroupNode).find('text');
@@ -1956,7 +1921,6 @@ var extractAxes = function(svgNode) {
 
         // We've found a data-bound axis.  Now let's separate the axis from the remainder of the deconstruction.
         if (node.__axis__) {
-            console.log('We\'ve found a data-bound axis.');
 
             var axisOrientation = (node.__axis__.orient === "left" || node.__axis__.orient === "right") ? "yaxis" : "xaxis";
             node.__axis__.axis = axisOrientation;
@@ -2037,9 +2001,7 @@ var extractMarkDataFromNode = function(node, deconID) {
                     delete mark.data.startAngle;
                     delete mark.data.endAngle;
                 }
-                else{
-                    console.log(mark, mark.data.startAngle, mark.data.endAngle);
-                }
+
             }
         }
     }
